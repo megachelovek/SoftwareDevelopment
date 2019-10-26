@@ -1,58 +1,46 @@
 package com.ssau.demo.Controller;
 
-import com.ssau.demo.InterfaceCrudRepository.CarRepository;
-import com.ssau.demo.Model.CarEntity;
-import com.ssau.demo.Rest.Request;
-import com.ssau.demo.Rest.Response;
-import com.ssau.demo.Rest.SimpleResponse;
+import com.ssau.demo.DAO.CarDAO;
+import com.ssau.demo.Entity.CarEntity;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.util.List;
+import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
+import static org.springframework.util.MimeTypeUtils.APPLICATION_XML_VALUE;
 
 @CrossOrigin
 @RestController
 @RequestMapping("/car")
-public class CarController implements Controller<CarEntity> {
-  public static final String SORT_PROPERTY = "name";
-  private CarRepository repository;
+public class CarController  {
 
   @Autowired
-  public CarController(CarRepository repository) {
-    this.repository = repository;
+  private CarDAO carDAO;
+
+  @GetMapping(produces = { APPLICATION_JSON_VALUE,
+          APPLICATION_XML_VALUE})
+  public Object getAll()  {
+    return  new CarXSL(carDAO.getAll());
   }
 
-  public ModelAndView handleRequest(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws Exception {
-    return null;
+  @GetMapping(value = "{id}", produces = { APPLICATION_JSON_VALUE,
+          APPLICATION_XML_VALUE})
+  public Object findById(@PathVariable int id) {
+    return  carDAO.findById(id);
   }
 
-  @Override
-  public Response<List<CarEntity>> getAll(String sort, String search) {
-    return null;
+  @DeleteMapping("{id}")
+  public void remove(@PathVariable int id) {
+    carDAO.remove(carDAO.findById(id));
   }
 
-  @Override
-  public Response<CarEntity> get(Long id) {
-    return null;
+  @PostMapping
+  public void create(@RequestBody CarEntity entity) {
+    carDAO.create(entity);
   }
 
-  @Override
-  public SimpleResponse add(Request<CarEntity> request) {
-    return null;
+  @PutMapping
+  public void edit(@RequestBody CarEntity entity) {
+    carDAO.edit(entity);
   }
 
-  @Override
-  public SimpleResponse remove(Long id) {
-    return null;
-  }
-
-  @Override
-  public SimpleResponse update(Request<CarEntity> request) {
-    return null;
-  }
 }

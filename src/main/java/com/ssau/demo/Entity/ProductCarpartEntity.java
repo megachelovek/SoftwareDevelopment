@@ -1,4 +1,4 @@
-package com.ssau.demo.Model;
+package com.ssau.demo.Entity;
 
 import javax.persistence.*;
 import java.util.Objects;
