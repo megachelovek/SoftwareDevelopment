@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface CarDAO {
   public List<CarEntity> getAll();
-  public CarEntity findById(int id);
+  public CarEntity findById(Integer id);
   public void remove(CarEntity entity);
   public void create(CarEntity entity);
   public void edit(CarEntity entity);

@@ -23,7 +23,7 @@ public class CarService implements CarDAO {
   }
 
   @Override
-  public CarEntity findById(int id) {
+  public CarEntity findById(Integer id) {
     return СarRepository.findById(id);
   }
 

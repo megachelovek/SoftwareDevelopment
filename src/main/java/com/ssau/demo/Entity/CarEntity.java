@@ -6,7 +6,7 @@ import java.util.Objects;
 @Entity
 @Table(name = "car", schema = "public", catalog = "software_development")
 public class CarEntity {
-  private @Id int carId;
+  private @Id int id;
   private String type;
   private Integer capacity;
   private String name;
@@ -14,25 +14,25 @@ public class CarEntity {
   private Integer maxspeed;
   private String description;
 
-  public CarEntity(int carId, String type, Integer capacity, String name, Integer price,Integer maxspeed,String description) {
-    this.carId = carId;
-    this.type = type;
-    this.capacity = capacity;
-    this.name = name;
-    this.price = price;
-    this.maxspeed = maxspeed;
-    this.description = description;
-  }
+//  public CarEntity(int id, String type, Integer capacity, String name, Integer price,Integer maxspeed,String description) {
+//    this.id = id;
+//    this.type = type;
+//    this.capacity = capacity;
+//    this.name = name;
+//    this.price = price;
+//    this.maxspeed = maxspeed;
+//    this.description = description;
+//  }
 
   @Id
   @Column(name = "car_id")
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  public int getCarId() {
-    return carId;
+  public int getId() {
+    return id;
   }
 
-  public void setCarId(int carId) {
-    this.carId = carId;
+  public void setId(int id) {
+    this.id = id;
   }
 
   @Basic
@@ -100,7 +100,7 @@ public class CarEntity {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     CarEntity carEntity = (CarEntity) o;
-    return carId == carEntity.carId &&
+    return id == carEntity.id &&
             Objects.equals(type, carEntity.type) &&
             Objects.equals(capacity, carEntity.capacity) &&
             Objects.equals(name, carEntity.name) &&
@@ -111,6 +111,6 @@ public class CarEntity {
 
   @Override
   public int hashCode() {
-    return Objects.hash(carId, type, capacity, name, price, maxspeed, description);
+    return Objects.hash(id, type, capacity, name, price, maxspeed, description);
   }
 }
