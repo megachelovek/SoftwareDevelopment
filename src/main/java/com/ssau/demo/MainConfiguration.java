@@ -48,12 +48,17 @@ public class MainConfiguration extends WebSecurityConfigurerAdapter {
 
   @Override
   protected void configure(HttpSecurity http) throws Exception {
-    http.cors()
-            .and().httpBasic()
-            .and().csrf().disable().
-            authorizeRequests().antMatchers("/", "/login", "/logout", "/registration", "/reset").permitAll();
-
-    http.authorizeRequests().antMatchers("/profiles", "/trainers", "/clients", "/client_sessions", "/sessions", "lobbies").authenticated();
+    http
+            .authorizeRequests()
+            .antMatchers("/").permitAll()
+            .anyRequest().permitAll()//authenticated()
+            .and()
+            .formLogin()
+            .loginPage("/login")
+            .permitAll()
+            .and()
+            .logout()
+            .permitAll();
 
     http.formLogin()
             .loginPage("/login")

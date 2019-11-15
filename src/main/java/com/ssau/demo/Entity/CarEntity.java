@@ -6,13 +6,13 @@ import java.util.Objects;
 @Entity
 @Table(name = "car", schema = "public", catalog = "software_development")
 public class CarEntity {
-  private @Id int id;
-  private String type;
-  private Integer capacity;
-  private String name;
-  private Integer price;
-  private Integer maxspeed;
-  private String description;
+    private @Id int id;
+    private String type;
+    private Integer capacity;
+    private String name;
+    private Integer price;
+    private Integer maxspeed;
+    private String description;
 
 //  public CarEntity(int id, String type, Integer capacity, String name, Integer price,Integer maxspeed,String description) {
 //    this.id = id;
@@ -24,93 +24,93 @@ public class CarEntity {
 //    this.description = description;
 //  }
 
-  @Id
-  @Column(name = "car_id")
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  public int getId() {
-    return id;
-  }
+    @Id
+    @Column(name = "car_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    public int getId() {
+        return id;
+    }
 
-  public void setId(int id) {
-    this.id = id;
-  }
+    public void setId(int id) {
+        this.id = id;
+    }
 
-  @Basic
-  @Column(name = "type")
-  public String getType() {
-    return type;
-  }
+    @Basic
+    @Column(name = "type")
+    public String getType() {
+        return type;
+    }
 
-  public void setType(String type) {
-    this.type = type;
-  }
+    public void setType(String type) {
+        this.type = type;
+    }
 
-  @Basic
-  @Column(name = "capacity")
-  public Integer getCapacity() {
-    return capacity;
-  }
+    @Basic
+    @Column(name = "capacity")
+    public Integer getCapacity() {
+        return capacity;
+    }
 
-  public void setCapacity(Integer capacity) {
-    this.capacity = capacity;
-  }
+    public void setCapacity(Integer capacity) {
+        this.capacity = capacity;
+    }
 
-  @Basic
-  @Column(name = "name")
-  public String getName() {
-    return name;
-  }
+    @Basic
+    @Column(name = "name")
+    public String getName() {
+        return name;
+    }
 
-  public void setName(String name) {
-    this.name = name;
-  }
+    public void setName(String name) {
+        this.name = name;
+    }
 
-  @Basic
-  @Column(name = "price")
-  public Integer getPrice() {
-    return price;
-  }
+    @Basic
+    @Column(name = "price")
+    public Integer getPrice() {
+        return price;
+    }
 
-  public void setPrice(Integer price) {
-    this.price = price;
-  }
+    public void setPrice(Integer price) {
+        this.price = price;
+    }
 
-  @Basic
-  @Column(name = "maxspeed")
-  public Integer getMaxspeed() {
-    return maxspeed;
-  }
+    @Basic
+    @Column(name = "maxspeed")
+    public Integer getMaxspeed() {
+        return maxspeed;
+    }
 
-  public void setMaxspeed(Integer maxspeed) {
-    this.maxspeed = maxspeed;
-  }
+    public void setMaxspeed(Integer maxspeed) {
+        this.maxspeed = maxspeed;
+    }
 
-  @Basic
-  @Column(name = "description")
-  public String getDescription() {
-    return description;
-  }
+    @Basic
+    @Column(name = "description")
+    public String getDescription() {
+        return description;
+    }
 
-  public void setDescription(String description) {
-    this.description = description;
-  }
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-    CarEntity carEntity = (CarEntity) o;
-    return id == carEntity.id &&
-            Objects.equals(type, carEntity.type) &&
-            Objects.equals(capacity, carEntity.capacity) &&
-            Objects.equals(name, carEntity.name) &&
-            Objects.equals(price, carEntity.price) &&
-            Objects.equals(maxspeed, carEntity.maxspeed) &&
-            Objects.equals(description, carEntity.description);
-  }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CarEntity carEntity = (CarEntity) o;
+        return id == carEntity.id &&
+                Objects.equals(type, carEntity.type) &&
+                Objects.equals(capacity, carEntity.capacity) &&
+                Objects.equals(name, carEntity.name) &&
+                Objects.equals(price, carEntity.price) &&
+                Objects.equals(maxspeed, carEntity.maxspeed) &&
+                Objects.equals(description, carEntity.description);
+    }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(id, type, capacity, name, price, maxspeed, description);
-  }
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, type, capacity, name, price, maxspeed, description);
+    }
 }

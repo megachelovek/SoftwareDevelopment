@@ -19,7 +19,7 @@ public class LoginRestController {
     if (username == null || password==null) {
       return new ResponseEntity(HttpStatus.UNAUTHORIZED);
     }
-    return new ResponseEntity("login", HttpStatus.OK);
+    return new ResponseEntity("login OK", HttpStatus.OK);
   }
 
   @GetMapping(value = "/logout", params = {"logout"})

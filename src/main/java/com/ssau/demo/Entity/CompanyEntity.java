@@ -15,11 +15,11 @@ public class CompanyEntity {
 
   @Id
   @Column(name = "company_id")
-  public int getCompanyId() {
+  public int getId() {
     return companyId;
   }
 
-  public void setCompanyId(int companyId) {
+  public void setId(int companyId) {
     this.companyId = companyId;
   }
 

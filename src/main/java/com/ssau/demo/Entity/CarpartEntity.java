@@ -15,11 +15,11 @@ public class CarpartEntity {
 
   @Id
   @Column(name = "carpart_id")
-  public int getCarpartId() {
+  public int getId() {
     return carpartId;
   }
 
-  public void setCarpartId(int carpartId) {
+  public void setId(int carpartId) {
     this.carpartId = carpartId;
   }
 
