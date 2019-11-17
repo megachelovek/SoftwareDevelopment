@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import './modules/table/table.css'
 import App from './App';
 import { Router, Switch, Route, BrowserRouter } from "react-router-dom";
 

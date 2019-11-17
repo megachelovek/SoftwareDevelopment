@@ -1,5 +1,6 @@
 import React from 'react';
-import EditTable from './tables/table'
+import MainTable from './table/table'
+// import DemoTable from './tablesOLD/index.jsx.js'
 
 var demoData = [
   { id: 1, name: 'Test1', email: 'test1@test.com', choose: 'First'},
@@ -17,19 +18,8 @@ class CarPage extends React.Component {
     this.setState({ data: data });
   }
   render() {
-    var fields = {
-      id: { header: 'Id'},
-      name: { header: 'Name *' },
-      email: { header: 'Email *', type: 'email' },
-      choose: { header: 'Choose *', type: 'select', options: {
-        first: 'First',
-        second: 'Second',
-        third: 'Third'
-      } }
-    };
-    var data = this.state.data;
       return (
-        <EditTable fields={fields} data={data} />
+        <MainTable dataFromServer={demoData}/>
       );
       
     }
