@@ -1,0 +1,33 @@
+.tableMain{
+    display: block;
+    width: 600px;
+}
+.headerMain{
+    width: 100%;
+    display: block;
+    color: #82caa8;
+    background-color: darkblue;
+    padding-left: 10px;
+}
+
+.headerColumn{
+    display: inline;
+    color: #82caa8;
+    background-color: darkblue;
+    padding-left: 10px;
+}
+
+.dataMain{
+    width: 100%;
+    display: block;
+    color: #44af7d;
+    background-color: rgb(46, 46, 173);
+    padding-left: 10px;
+}
+
+.dataColumn{
+    display: inline;
+    color: #44af7d;
+    background-color: rgb(46, 46, 173);
+    padding-left: 10px;
+}
