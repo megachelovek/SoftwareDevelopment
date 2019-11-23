@@ -30,3 +30,4 @@ build/
 ### VS Code ###
 .vscode/
 /src/main/web/node_modules/
+/src/main/web/node_modules/
