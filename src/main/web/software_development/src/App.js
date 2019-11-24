@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactRouterDOM from 'react-router-dom';
 import './App.css';
 import Menu from './modules/menu'
 
