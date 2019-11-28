@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 class Table2 extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { data: this.props.tableData,counter:0 };
+        this.state = { data: this.props.tableData, serviceName: this.props.serviceName };
     }
     update(data) {
         this.setState({ data: data });
@@ -16,7 +16,7 @@ class Table2 extends React.Component {
                 <div className="row headerMain">
                     {
                         Object.keys(this.state.data[0]).map(header => {
-                            return <div className="col-sm headerColumn" key={header}>{header}</div>
+                            return <div className="col-sm headerColumn" key={header="Header"}>{header}</div>
                         })
                     }
                     <div className="col-sm headerColumn" key={"header"}>
@@ -40,20 +40,23 @@ class Table2 extends React.Component {
                                         </div>
                                     })
                                 }
-                                <div className="col-sm headerColumn" key={item+"edit"}>
+                                <div className="col-sm headerColumn" key={item+"Edit"}>
                                     <Link to={{
                                         pathname: '/editPage',
                                         editData: {
-                                            isEdit:true,
-                                            item
+                                            isEdit:()=>{
+                                                console.log("table2 = " + item); 
+                                                return true;
+                                            },
+                                            itemEdit:item
                                         }
                                     }}>Изменить</Link>
                                 </div>
-                                <div className="col-sm headerColumn" key={item+"delete"}>
+                                <div className="col-sm headerColumn" key={item+"Delete"}>
                                     <Link to={{
                                         pathname: '/editPage',
                                         editData: {
-                                            item
+                                            itemEdit:item
                                         }
                                     }}>Удалить</Link>
                                 </div>

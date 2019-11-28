@@ -1,7 +1,7 @@
 import React from 'react';
 import Table2 from './table2/table'
 import Menu from './menu';
-import getItems from './dataExchangeService'
+import {getItems} from './dataExchangeService2'
 
 class CarPage extends React.Component {
   constructor() {
