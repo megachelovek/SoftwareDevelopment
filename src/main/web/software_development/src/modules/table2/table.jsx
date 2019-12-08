@@ -1,10 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import {deleteItem} from '../dataExchangeService'
 
 class Table2 extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { data: this.props.tableData, serviceName: this.props.serviceName };
+        this.state = { data: this.props.tableData, serviceUrl: this.props.serviceUrl };
     }
     update(data) {
         this.setState({ data: data });
@@ -16,7 +17,7 @@ class Table2 extends React.Component {
                 <div className="row headerMain">
                     {
                         Object.keys(this.state.data[0]).map(header => {
-                            return <div className="col-sm headerColumn" key={header="Header"}>{header}</div>
+                            return <div className="col-sm headerColumn" key={header}>{header}</div>
                         })
                     }
                     <div className="col-sm headerColumn" key={"header"}>
@@ -40,26 +41,18 @@ class Table2 extends React.Component {
                                         </div>
                                     })
                                 }
-                                <div className="col-sm headerColumn" key={item+"Edit"}>
+                                <div className="col-sm headerColumn" key={item+"edit"}>
                                     <Link to={{
                                         pathname: '/editPage',
                                         editData: {
-                                            isEdit:()=>{
-                                                console.log("table2 = " + item); 
-                                                return true;
-                                            },
-                                            itemEdit:item
+                                            isEdit:true,
+                                            item
                                         }
                                     }}>Изменить</Link>
                                 </div>
-                                <div className="col-sm headerColumn" key={item+"Delete"}>
-                                    <Link to={{
-                                        pathname: '/editPage',
-                                        editData: {
-                                            itemEdit:item
-                                        }
-                                    }}>Удалить</Link>
-                                </div>
+                                 <div className="col-sm headerColumn" key={item+"delete"}>
+                                    <a href="" onclick={deleteItem("",item["id"])}>Удалить</a>
+                                </div> 
                             </div>
                         </div>
                     })

@@ -1,6 +1,5 @@
 package com.ssau.demo;
 
-import com.ssau.demo.Services.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -9,45 +8,23 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.CorsConfigurationSource;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 @EnableWebSecurity
 public class MainConfiguration extends WebSecurityConfigurerAdapter {
-
   @Autowired
-  public MainConfiguration(UserDetailsServiceImpl userDetailsService){
-    this.userDetailsService = userDetailsService;
-  }
-
-  private UserDetailsServiceImpl userDetailsService;
-
-  @Bean
-  public CorsConfigurationSource corsConfigurationSource() {
-    try {
-      UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-      source.registerCorsConfiguration("/**", new CorsConfiguration().applyPermitDefaultValues());
-      return source;
-    }catch (Exception ex){
-
-    }
-    return null;
-  }
-
-  @Bean
-  public BCryptPasswordEncoder passwordEncoder() {
-    return new BCryptPasswordEncoder();
-  }
+  private MyBasicAuthenticationEntryPoint authenticationEntryPoint;
 
   @Autowired
   public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-    auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+    auth.inMemoryAuthentication()
+            .withUser("admin").password(passwordEncoder().encode("admin"))
+            .authorities("USER");
   }
 
   @Override
-  protected void configure(HttpSecurity http) throws Exception {
+  protected void configure(final HttpSecurity http) throws Exception {
     http
             .authorizeRequests()
             .antMatchers("/").permitAll()
@@ -60,11 +37,32 @@ public class MainConfiguration extends WebSecurityConfigurerAdapter {
             .logout()
             .permitAll();
 
-    http.formLogin()
-            .loginPage("/login")
-            .failureUrl("/login?error=true")
-            .usernameParameter("username")
-            .passwordParameter("password");
-    http.logout().permitAll().logoutUrl("/logout").invalidateHttpSession(true);
+//    http
+//            .sessionManagement()
+//            .sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
+//            .csrf().disable()
+//            .exceptionHandling().and()
+//            .anonymous().and()
+//            .servletApi().and()
+//            .authorizeRequests()
+//            .antMatchers(HttpMethod.GET, "/").permitAll()
+//            .antMatchers(HttpMethod.POST, "/").permitAll()
+//            .antMatchers(HttpMethod.DELETE, "/").permitAll()
+//            .antMatchers(HttpMethod.PUT, "/").permitAll()
+//            .anyRequest().authenticated();
+
+   /* http.antMatcher("/**").authorizeRequests().anyRequest().permitAll()
+            .antMatchers(HttpMethod.GET, "/**").permitAll()
+            .antMatchers(HttpMethod.POST, "/**").permitAll()
+            .antMatchers(HttpMethod.DELETE, "/**").permitAll()
+            .antMatchers(HttpMethod.PUT, "/**").permitAll();*/
+
+  }
+
+
+  @Bean
+  public PasswordEncoder passwordEncoder() {
+    return new BCryptPasswordEncoder();
   }
 }
+

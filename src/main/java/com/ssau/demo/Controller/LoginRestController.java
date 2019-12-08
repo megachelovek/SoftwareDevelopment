@@ -14,12 +14,15 @@ public class LoginRestController {
     return new BCryptPasswordEncoder().encode(password);
   }
 
+
   @GetMapping(value = "/login", params = {"username", "password"})
   public ResponseEntity<?> getLogin(@RequestParam(value = "username", required = true) String username,@RequestParam(value = "password", required = true) String password) {
-    if (username == null || password==null) {
-      return new ResponseEntity(HttpStatus.UNAUTHORIZED);
+    //UserEntity user = userRepository.findById(username);
+    if (username == null || password==null ) {
+      return new ResponseEntity("user not found",HttpStatus.UNAUTHORIZED);
     }
     return new ResponseEntity("login OK", HttpStatus.OK);
+
   }
 
   @GetMapping(value = "/logout", params = {"logout"})

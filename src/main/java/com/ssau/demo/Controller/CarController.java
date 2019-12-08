@@ -7,9 +7,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
-import static org.springframework.util.MimeTypeUtils.APPLICATION_XML_VALUE;
-
 @CrossOrigin
 @RestController
 @RequestMapping("/car")
@@ -18,13 +15,12 @@ public class CarController  {
   @Autowired
   private CarDAO CarDAO;
 
-  @GetMapping(value = "/getcar")
+  @GetMapping(value = "/getAll")
   public List<CarEntity> getAll()  {
     return CarDAO.getAll();
   }
 
-  @GetMapping(value = "{id}", produces = { APPLICATION_JSON_VALUE,
-          APPLICATION_XML_VALUE})
+  @GetMapping(value = "{id}")
   public Object findById(@PathVariable int id) {
     return  CarDAO.findById(id);
   }

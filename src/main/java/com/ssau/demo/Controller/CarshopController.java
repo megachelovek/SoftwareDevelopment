@@ -1,16 +1,11 @@
 package com.ssau.demo.Controller;
 
-import com.ssau.demo.DAO.CarDAO;
 import com.ssau.demo.DAO.CarshopDAO;
-import com.ssau.demo.Entity.CarEntity;
 import com.ssau.demo.Entity.CarshopEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
-import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
-import static org.springframework.util.MimeTypeUtils.APPLICATION_XML_VALUE;
 
 @CrossOrigin
 @RestController
@@ -20,13 +15,12 @@ public class CarshopController {
   @Autowired
   private CarshopDAO carshopDAO;
 
-  @GetMapping(value = "/getshop")
+  @GetMapping(value = "/getAll")
   public List<CarshopEntity> getAll()  {
     return carshopDAO.getAll();
   }
 
-  @GetMapping(value = "{id}", produces = { APPLICATION_JSON_VALUE,
-          APPLICATION_XML_VALUE})
+  @GetMapping(value = "{id}")
   public Object findById(@PathVariable int id) {
     return  carshopDAO.findById(id);
   }
