@@ -2,10 +2,12 @@ package com.ssau.demo.Security;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.ssau.demo.Entity.UserEntity;
+import com.ssau.demo.Entity.UserRoleEntity;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -27,8 +29,12 @@ public class UserPrincipal implements UserDetails {
   }
 
   public static UserPrincipal create(UserEntity user) {
-    List<GrantedAuthority> authorities = user.getRoles().stream()
-            .map(role -> new SimpleGrantedAuthority(role.getName().name()))
+    List <UserRoleEntity> tempList= new ArrayList<UserRoleEntity>();
+    tempList.add(new UserRoleEntity(0,"ADMIN"));
+
+    List<GrantedAuthority> authorities =
+            tempList.stream()
+            .map(role -> new SimpleGrantedAuthority("ADMIN"))
             .collect(Collectors.toList());
 
     return new UserPrincipal(

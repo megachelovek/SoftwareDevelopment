@@ -9,6 +9,8 @@
         <class>com.ssau.demo.Entity.CompanyEntity</class>
         <class>com.ssau.demo.Entity.ProductCarEntity</class>
         <class>com.ssau.demo.Entity.ProductCarpartEntity</class>
+        <class>com.ssau.demo.Entity.UserEntity</class>
+        <class>com.ssau.demo.Entity.UserRoleEntity</class>
         <properties>
             <property name="hibernate.connection.url" value="jdbc:postgresql://localhost:5432/software_development"/>
             <property name="hibernate.connection.driver_class" value="org.postgresql.Driver"/>

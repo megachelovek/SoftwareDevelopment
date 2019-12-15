@@ -2,42 +2,40 @@ package com.ssau.demo.Services;
 
 import com.ssau.demo.Entity.UserEntity;
 import com.ssau.demo.Repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
+import com.ssau.demo.Security.UserPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
-  private UserRepository userRepository;
 
-  @Autowired
-  public UserDetailsServiceImpl(UserRepository userRepository){
+  private final UserRepository userRepository;
+
+  public UserDetailsServiceImpl(UserRepository userRepository) {
     this.userRepository = userRepository;
   }
 
   @Override
-  public UserDetails loadUserByUsername(String id) throws UsernameNotFoundException {
-    UserEntity client = userRepository.findById(id);
+  @Transactional
+  public UserDetails loadUserByUsername(String usernameOrEmail)
+          throws UsernameNotFoundException {
+    UserEntity user = userRepository.findByUsername(usernameOrEmail)
+            .orElseThrow(() ->
+                    new UsernameNotFoundException("User not found with username: " + usernameOrEmail)
+            );
 
-    if(client == null){
-      throw new UsernameNotFoundException(id + " not found");
-    }
+    return UserPrincipal.create(user);
+  }
 
-    Set<GrantedAuthority> setAuthority = new HashSet<>();
-    setAuthority.add(new SimpleGrantedAuthority("ROLE_USER"));
+  @Transactional
+  public UserDetails loadUserById(Integer id) {
+    UserEntity user = userRepository.findById(id).orElseThrow(
+            () -> new RuntimeException("User with id " + id + " is not found!")
+    );
 
-    List<GrantedAuthority> authorities = new ArrayList<>(setAuthority);
-
-    return new User(client.getUsername(), client.getPassword(), authorities);
+    return UserPrincipal.create(user);
   }
 }
