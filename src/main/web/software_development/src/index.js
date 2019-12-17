@@ -1,10 +1,9 @@
-import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 //import './modules/main.css';
 import './modules/table2/table.css'
 import App from './App';
-import { Switch, Route, BrowserRouter } from "react-router-dom";
+import {BrowserRouter, Route, Switch} from "react-router-dom";
 
 import CarPage from './modules/carPage';
 import CarpartPage from './modules/carpartPage';

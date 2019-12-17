@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import {deleteItem} from '../dataExchangeService'
 
 class Table2 extends React.Component {

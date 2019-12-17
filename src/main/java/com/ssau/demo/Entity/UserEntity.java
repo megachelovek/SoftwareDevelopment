@@ -20,7 +20,6 @@ public class UserEntity {
   @JoinTable(name = "user_role",joinColumns = @JoinColumn(name = "id"),inverseJoinColumns = @JoinColumn(name = "id"))
   private Set<UserRoleEntity> roles = new HashSet<>();
 
-
 //  public Set<UserRoleEntity> getRoles() {
 //   return this.roles;
 //  }

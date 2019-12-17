@@ -1,13 +1,13 @@
 import React from 'react';
 import './App.css';
-import Menu from './modules/menu'
+import LoginPage from './modules/loginPage'
 
 class App extends React.Component {
   render() {
     return (
       <div className="mainComponent">
-        Выберите таблицу
-        <Menu></Menu>
+        
+        <LoginPage></LoginPage>
       </div>      
     );
   }

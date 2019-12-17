@@ -1,7 +1,6 @@
 package com.ssau.demo.DAO;
 
 
-import com.ssau.demo.Entity.CarEntity;
 import com.ssau.demo.Entity.CarpartEntity;
 
 import java.util.List;

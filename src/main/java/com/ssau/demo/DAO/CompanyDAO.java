@@ -1,7 +1,6 @@
 package com.ssau.demo.DAO;
 
 
-import com.ssau.demo.Entity.CarshopEntity;
 import com.ssau.demo.Entity.CompanyEntity;
 
 import java.util.List;
