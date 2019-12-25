@@ -64,6 +64,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
   @Override
   protected void configure(HttpSecurity http) throws Exception {
+//    http
+//            .cors()
+//            .and()
+//            .csrf()
+//            .disable().anonymous()
+//            .and().authorizeRequests();
+
     http
             .cors()
             .and()
@@ -92,7 +99,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .permitAll()
             .anyRequest()
             .authenticated();
-    // Add our custom JWT security filter
+
     http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
   }
 }

@@ -1,6 +1,7 @@
 package com.ssau.demo.Entity;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -18,7 +19,6 @@ public class CarshopEntity {
   public int getId() {
     return carshopId;
   }
-
   public void setId(int carshopId) {
     this.carshopId = carshopId;
   }
@@ -28,7 +28,6 @@ public class CarshopEntity {
   public String getName() {
     return name;
   }
-
   public void setName(String name) {
     this.name = name;
   }
@@ -38,7 +37,6 @@ public class CarshopEntity {
   public String getDescription() {
     return description;
   }
-
   public void setDescription(String description) {
     this.description = description;
   }
@@ -48,7 +46,6 @@ public class CarshopEntity {
   public String getAddress() {
     return address;
   }
-
   public void setAddress(String address) {
     this.address = address;
   }
@@ -58,7 +55,6 @@ public class CarshopEntity {
   public String getPhone() {
     return phone;
   }
-
   public void setPhone(String phone) {
     this.phone = phone;
   }
@@ -68,10 +64,15 @@ public class CarshopEntity {
   public String getSite() {
     return site;
   }
-
   public void setSite(String site) {
     this.site = site;
   }
+
+  @ManyToMany
+  @JoinTable(name="product_carpart",
+          joinColumns=@JoinColumn(name="carshop_id"),
+          inverseJoinColumns=@JoinColumn(name="carpart_id"))
+  private List<CarshopEntity> carshopEntities;
 
   @Override
   public boolean equals(Object o) {

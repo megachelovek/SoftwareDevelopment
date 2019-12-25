@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import static org.springframework.http.MediaType.APPLICATION_JSON_UTF8_VALUE;
+
 @CrossOrigin
 @RestController
 @RequestMapping("/carshop")
@@ -25,17 +27,17 @@ public class CarshopController {
     return  carshopDAO.findById(id);
   }
 
-  @DeleteMapping("{id}")
+  @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
   public void remove(@PathVariable int id) {
     carshopDAO.remove(carshopDAO.findById(id));
   }
 
-  @PostMapping
+  @RequestMapping(value = "/add", method = RequestMethod.POST,consumes = APPLICATION_JSON_UTF8_VALUE)
   public void create(@RequestBody CarshopEntity entity) {
     carshopDAO.create(entity);
   }
 
-  @PutMapping
+  @RequestMapping(value = "/edit", method = RequestMethod.PUT,consumes = APPLICATION_JSON_UTF8_VALUE)
   public void edit(@RequestBody CarshopEntity entity) {
     carshopDAO.edit(entity);
   }

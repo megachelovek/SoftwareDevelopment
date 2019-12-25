@@ -24,19 +24,22 @@ public class UserEntity {
 //   return this.roles;
 //  }
 
-  public void setRoles(Set<UserRoleEntity> roles) {
-    this.roles = roles;
-  }
+  public void setRoles(Set<UserRoleEntity> roles) {this.roles = roles; }
 
-  public UserEntity() {
-  }
+  public UserEntity() { }
 
   public UserEntity(@NotBlank @Size(max = 15) String username, @NotBlank @Size(max = 100) String password) {
     this.username = username;
     this.password = password;
   }
 
-  @Basic
+  public UserEntity(@NotBlank @Size(max = 15) String username, @NotBlank @Size(max = 100) String password, Set<UserRoleEntity> userRoleEntity) {
+    this.username = username;
+    this.password = password;
+    this.roles = userRoleEntity;
+  }
+
+  @Id
   @Column(name = "id")
   public int getId() {
     return id;
@@ -46,7 +49,7 @@ public class UserEntity {
     this.id = id;
   }
 
-  @Id
+  @Basic
   @Column(name = "username")
   public String getUsername() {
     return username;

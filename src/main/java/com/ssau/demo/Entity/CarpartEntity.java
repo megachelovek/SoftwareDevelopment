@@ -1,6 +1,7 @@
 package com.ssau.demo.Entity;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -12,13 +13,14 @@ public class CarpartEntity {
   private String name;
   private String type;
   private String description;
+  private CarEntity carEntity;
+  private CompanyEntity companyEntity;
 
   @Id
   @Column(name = "carpart_id")
   public int getId() {
     return carpartId;
   }
-
   public void setId(int carpartId) {
     this.carpartId = carpartId;
   }
@@ -28,7 +30,6 @@ public class CarpartEntity {
   public Integer getLifetime() {
     return lifetime;
   }
-
   public void setLifetime(Integer lifetime) {
     this.lifetime = lifetime;
   }
@@ -48,17 +49,39 @@ public class CarpartEntity {
   public String getName() {
     return name;
   }
-
   public void setName(String name) {
     this.name = name;
   }
+
+  @OneToOne
+  @JoinColumn(name = "car_id", referencedColumnName = "car_id")
+  public CarEntity getCar() {
+    return carEntity;
+  }
+  public void setCar(CarEntity carEntity) {
+    this.carEntity = carEntity;
+  }
+
+  @OneToOne
+  @JoinColumn(name = "company_id", referencedColumnName = "company_id")
+  public CompanyEntity getCompany() {
+    return companyEntity;
+  }
+  public void setCompany(CompanyEntity companyEntity) {
+    this.companyEntity = companyEntity;
+  }
+
+  @ManyToMany
+  @JoinTable(name="product_carpart",
+          joinColumns=@JoinColumn(name="carpart_id"),
+          inverseJoinColumns=@JoinColumn(name="carshop_id"))
+  private List<CarshopEntity> carshopEntities;
 
   @Basic
   @Column(name = "type")
   public String getType() {
     return type;
   }
-
   public void setType(String type) {
     this.type = type;
   }
@@ -68,7 +91,6 @@ public class CarpartEntity {
   public String getDescription() {
     return description;
   }
-
   public void setDescription(String description) {
     this.description = description;
   }

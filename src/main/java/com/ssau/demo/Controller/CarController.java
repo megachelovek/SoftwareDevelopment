@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import static org.springframework.http.MediaType.APPLICATION_JSON_UTF8_VALUE;
+
 @CrossOrigin
 @RestController
 @RequestMapping("/car")
@@ -30,12 +32,12 @@ public class CarController  {
     CarDAO.remove(CarDAO.findById(id));
   }
 
-  @PostMapping
+  @RequestMapping(value = "/add", method = RequestMethod.POST,consumes = APPLICATION_JSON_UTF8_VALUE)
   public void create(@RequestBody CarEntity entity) {
     CarDAO.create(entity);
   }
 
-  @PutMapping
+  @RequestMapping(value = "/edit", method = RequestMethod.PUT,consumes = APPLICATION_JSON_UTF8_VALUE)
   public void edit(@RequestBody CarEntity entity) {
     CarDAO.edit(entity);
   }

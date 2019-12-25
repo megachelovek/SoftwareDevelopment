@@ -1,4 +1,5 @@
 import ReactDOM from 'react-dom';
+import React from 'react';
 import './index.css';
 //import './modules/main.css';
 import './modules/table2/table.css'
