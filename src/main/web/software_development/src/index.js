@@ -10,7 +10,7 @@ import CarPage from './modules/carPage';
 import CarpartPage from './modules/carpartPage';
 import CompanyPage from './modules/companyPage';
 import ShopPage from './modules/shopPage';
-import EditPage2 from './modules/editPage2';
+import EditObjectPage from './modules/editObjectPage';
 import * as serviceWorker from './serviceWorker';
 
 const rootElement = document.getElementById("root");
@@ -18,7 +18,7 @@ ReactDOM.render(
   <BrowserRouter>
     <Switch>
       <Route exact path="/" component={App} />
-      <Route path="/editPage" component={EditPage2} /> 
+      <Route path="/editPage" component={EditObjectPage} /> 
       <Route path="/carpage" component={CarPage} />
       <Route path="/carpartpage" component={CarpartPage} />
       <Route path="/shoppage" component={ShopPage} />

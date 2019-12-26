@@ -1,6 +1,7 @@
 import React from 'react';
 import Menu from './menu';
 
+//НЕ ИСПОЛЬЗОВАТЬ!!
 class EditPage2 extends React.Component {
     constructor(props) {
         super(props);

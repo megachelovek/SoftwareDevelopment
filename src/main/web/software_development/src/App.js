@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.css';
 import LoginPage from './modules/loginPage'
 
 class App extends React.Component {
